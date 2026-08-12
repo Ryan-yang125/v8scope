@@ -157,7 +157,7 @@ fn application_signal_handler_finishes_async_cleanup() {
     let marker_root = TempDir::new().unwrap();
     let marker = marker_root.path().join("clean.txt");
     cargo_bin_cmd!("v8scope")
-        .args(["cpu", "--duration", "100ms", "--output"])
+        .args(["cpu", "--duration", "500ms", "--output"])
         .arg(output.path())
         .args(["--", "node"])
         .arg(fixture("graceful-signal.cjs"))
