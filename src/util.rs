@@ -114,6 +114,11 @@ pub fn node_option(value: &Path) -> String {
 
 fn quote_node_option(value: &str, windows: bool) -> String {
     let value = if windows {
+        let value = if let Some(value) = value.strip_prefix(r"\\?\UNC\") {
+            format!(r"\\{value}")
+        } else {
+            value.strip_prefix(r"\\?\").unwrap_or(value).to_owned()
+        };
         value.replace('\\', "/")
     } else {
         value.replace('\\', "\\\\")
@@ -130,6 +135,14 @@ mod tests {
         assert_eq!(
             quote_node_option(r#"C:\work dir\v8scope-probe.cjs"#, true),
             r#""C:/work dir/v8scope-probe.cjs""#
+        );
+        assert_eq!(
+            quote_node_option(r#"\\?\C:\work dir\v8scope-probe.cjs"#, true),
+            r#""C:/work dir/v8scope-probe.cjs""#
+        );
+        assert_eq!(
+            quote_node_option(r#"\\?\UNC\server\share\v8scope-probe.cjs"#, true),
+            r#""//server/share/v8scope-probe.cjs""#
         );
     }
 }

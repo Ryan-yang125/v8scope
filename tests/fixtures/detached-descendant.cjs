@@ -9,7 +9,13 @@ const child = spawn(
   process.execPath,
   [
     '-e',
-    'require("node:fs").writeFileSync(process.argv[1], "ready"); setInterval(() => {}, 1000)',
+    `
+      const fs = require('node:fs')
+      const sampleUntil = Date.now() + 500
+      while (Date.now() < sampleUntil) Math.sqrt(Date.now())
+      fs.writeFileSync(process.argv[1], 'ready')
+      setInterval(() => {}, 1000)
+    `,
     readyFile
   ],
   {
