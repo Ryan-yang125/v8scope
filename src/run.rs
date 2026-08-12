@@ -463,9 +463,8 @@ async fn settle_descendants(
     }
     #[cfg(windows)]
     {
-        let _ = root_pid;
-        let forced = child.start_kill().is_ok();
-        Ok(forced)
+        let _ = (child, root_pid);
+        Ok(false)
     }
 }
 

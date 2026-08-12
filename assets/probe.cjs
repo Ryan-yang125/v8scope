@@ -241,8 +241,7 @@ for (const signal of ['SIGINT', 'SIGTERM']) {
     const applicationOwnsSignal = process.listeners(signal).some((listener) => listener !== handler);
     finish();
     if (applicationOwnsSignal) return;
-    process.removeListener(signal, handler);
-    process.kill(process.pid, signal);
+    process.exit(signal === 'SIGINT' ? 130 : 143);
   };
   signalHandlers.set(signal, handler);
   process.on(signal, handler);
