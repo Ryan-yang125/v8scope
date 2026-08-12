@@ -17,6 +17,8 @@ const telemetryFd = fs.openSync(telemetryPath, 'a');
 const started = process.hrtime.bigint();
 let sequence = 0;
 let finished = false;
+let stopRequested = false;
+let stopTimer = null;
 let previousCpu = process.cpuUsage();
 let previousSample = process.hrtime.bigint();
 let previousElu = performance.eventLoopUtilization();
@@ -219,6 +221,7 @@ function enableAsyncProbe(path) {
 function finish() {
   if (finished) return;
   finished = true;
+  if (stopTimer) clearInterval(stopTimer);
   clearInterval(timer);
   sample(true);
   delay.disable();
@@ -232,6 +235,7 @@ process.once('exit', finish);
 
 // CLI-triggered stops need an orderly Node exit so V8 can flush profile files.
 // Application handlers retain ownership of shutdown and may finish async work.
+const signalHandlers = new Map();
 for (const signal of ['SIGINT', 'SIGTERM']) {
   const handler = () => {
     const applicationOwnsSignal = process.listeners(signal).some((listener) => listener !== handler);
@@ -240,16 +244,33 @@ for (const signal of ['SIGINT', 'SIGTERM']) {
     process.removeListener(signal, handler);
     process.kill(process.pid, signal);
   };
+  signalHandlers.set(signal, handler);
   process.on(signal, handler);
 }
 
-if (process.platform === 'win32') {
-  const handler = () => {
-    const applicationOwnsSignal = process.listeners('SIGBREAK').some((listener) => listener !== handler);
-    finish();
-    if (applicationOwnsSignal) return;
-    process.removeListener('SIGBREAK', handler);
-    process.kill(process.pid, 'SIGBREAK');
-  };
-  process.on('SIGBREAK', handler);
+function requestStop() {
+  if (stopRequested) return;
+  stopRequested = true;
+  if (stopTimer) clearInterval(stopTimer);
+  const signal = 'SIGINT';
+  const handler = signalHandlers.get(signal);
+  const applicationOwnsSignal = process.listeners(signal).some((listener) => listener !== handler);
+  finish();
+  if (applicationOwnsSignal) {
+    process.emit(signal, signal);
+    return;
+  }
+  process.exit(130);
+}
+
+const stopPath = process.env.V8SCOPE_STOP_PATH;
+if (stopPath) {
+  stopTimer = setInterval(() => {
+    try {
+      if (fs.existsSync(stopPath)) requestStop();
+    } catch {
+      // A failed control-file check must not crash the target process.
+    }
+  }, 25);
+  stopTimer.unref();
 }

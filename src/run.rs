@@ -10,11 +10,11 @@ use goose::GooseAttack;
 use goose::config::GooseConfiguration;
 use goose::goose::{GooseUser, Scenario, Transaction, TransactionFunction};
 use goose::prelude::TransactionResult;
+#[cfg(windows)]
+use process_wrap::tokio::JobObject;
 #[cfg(unix)]
 use process_wrap::tokio::ProcessGroup;
 use process_wrap::tokio::{ChildWrapper, CommandWrap, KillOnDrop};
-#[cfg(windows)]
-use process_wrap::tokio::{CreationFlags, JobObject};
 use serde::Deserialize;
 use tokio::sync::{mpsc, watch};
 use url::Url;
@@ -84,6 +84,7 @@ pub async fn execute(mode: Mode, args: RunArgs) -> anyhow::Result<u8> {
     let node_options = build_node_options(mode, &args, &run_dir)?;
     let telemetry_path = run_dir.join("telemetry.ndjson");
     let async_path = run_dir.join("profiles/async/events.ndjson");
+    let stop_path = run_dir.join("runtime/stop");
     let existing_options = env::var("NODE_OPTIONS").unwrap_or_default();
     let process_token = Uuid::new_v4().to_string();
     let process_tracker = process::ProcessTracker::with_environment_marker(format!(
@@ -102,6 +103,8 @@ pub async fn execute(mode: Mode, args: RunArgs) -> anyhow::Result<u8> {
         );
         command.env("V8SCOPE_TELEMETRY_PATH", &telemetry_path);
         command.env("V8SCOPE_PROCESS_TOKEN", &process_token);
+        #[cfg(windows)]
+        command.env("V8SCOPE_STOP_PATH", &stop_path);
         command.env(
             "V8SCOPE_SAMPLE_INTERVAL_MS",
             args.sample_interval.as_millis().max(10).to_string(),
@@ -116,10 +119,6 @@ pub async fn execute(mode: Mode, args: RunArgs) -> anyhow::Result<u8> {
     });
     #[cfg(unix)]
     command.wrap(ProcessGroup::leader());
-    #[cfg(windows)]
-    command.wrap(CreationFlags(
-        windows::Win32::System::Threading::CREATE_NEW_PROCESS_GROUP,
-    ));
     #[cfg(windows)]
     command.wrap(JobObject);
     command.wrap(KillOnDrop);
@@ -209,7 +208,7 @@ pub async fn execute(mode: Mode, args: RunArgs) -> anyhow::Result<u8> {
             (status, false, None, forced)
         }
         End::Interrupted => {
-            let stopped = stop_child(&mut child, root_pid).await?;
+            let stopped = stop_child(&mut child, root_pid, &stop_path).await?;
             (stopped.status, true, Some(130), stopped.forced)
         }
         End::Duration(result) => {
@@ -219,14 +218,14 @@ pub async fn execute(mode: Mode, args: RunArgs) -> anyhow::Result<u8> {
                 workload_error =
                     Some("profiling duration elapsed before workload completed".into());
             }
-            let stopped = stop_child(&mut child, root_pid).await?;
+            let stopped = stop_child(&mut child, root_pid, &stop_path).await?;
             (stopped.status, true, Some(0), stopped.forced)
         }
         End::Workload(result) => {
             if let Err(error) = result {
                 workload_error = Some(format!("workload failed: {error:#}"));
             }
-            let stopped = stop_child(&mut child, root_pid).await?;
+            let stopped = stop_child(&mut child, root_pid, &stop_path).await?;
             (stopped.status, true, Some(0), stopped.forced)
         }
     };
@@ -406,13 +405,19 @@ struct StopOutcome {
 async fn stop_child(
     child: &mut Box<dyn ChildWrapper>,
     root_pid: u32,
+    _stop_path: &Path,
 ) -> anyhow::Result<StopOutcome> {
+    #[cfg(unix)]
     let interrupted = process::interrupt_group(root_pid);
+    #[cfg(windows)]
+    let interrupted = util::atomic_write(_stop_path, b"stop\n");
     if interrupted.is_ok()
         && let Ok(status) = tokio::time::timeout(GRACEFUL_STOP_TIMEOUT, child.wait()).await
     {
         let status = status?;
         let forced = settle_descendants(child, root_pid).await?;
+        #[cfg(windows)]
+        let _ = std::fs::remove_file(_stop_path);
         return Ok(StopOutcome { status, forced });
     }
     child.start_kill()?;
@@ -421,6 +426,8 @@ async fn stop_child(
         .await
         .context("failed to reap target process")?;
     let _ = settle_descendants(child, root_pid).await?;
+    #[cfg(windows)]
+    let _ = std::fs::remove_file(_stop_path);
     Ok(StopOutcome {
         status,
         forced: true,
@@ -525,10 +532,6 @@ async fn run_shell(command: &str, ready_url: &str, run_dir: &Path) -> anyhow::Re
     });
     #[cfg(unix)]
     process.wrap(ProcessGroup::leader());
-    #[cfg(windows)]
-    process.wrap(CreationFlags(
-        windows::Win32::System::Threading::CREATE_NEW_PROCESS_GROUP,
-    ));
     #[cfg(windows)]
     process.wrap(JobObject);
     process.wrap(KillOnDrop);

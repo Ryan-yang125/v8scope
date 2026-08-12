@@ -327,14 +327,3 @@ pub async fn settle_group(root_pid: u32, grace: Duration) -> anyhow::Result<bool
     }
     Ok(forced)
 }
-
-#[cfg(windows)]
-pub fn interrupt_group(root_pid: u32) -> anyhow::Result<()> {
-    use windows_sys::Win32::System::Console::{CTRL_BREAK_EVENT, GenerateConsoleCtrlEvent};
-    let result = unsafe { GenerateConsoleCtrlEvent(CTRL_BREAK_EVENT, root_pid) };
-    if result == 0 {
-        return Err(std::io::Error::last_os_error())
-            .context("failed to send Ctrl+Break to target process group");
-    }
-    Ok(())
-}
