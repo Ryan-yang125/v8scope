@@ -1,0 +1,11 @@
+[workspace]
+git_only = true
+publish = false
+release_always = false
+features_always_increment_minor = true
+
+[[package]]
+name = "v8scope"
+git_tag_name = "v{{ version }}"
+git_release_draft = true
+changelog_path = "CHANGELOG.md"
