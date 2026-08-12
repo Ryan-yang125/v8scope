@@ -238,17 +238,21 @@ pub async fn settle_tracked_processes(
     };
 
     let mut remaining = refresh_and_alive();
-    for pid in &remaining {
-        match kill(NixPid::from_raw(*pid as i32), Signal::SIGINT) {
-            Ok(()) | Err(Errno::ESRCH) => {}
-            Err(error) => return Err(error).context("failed to interrupt tracked descendant"),
-        }
-    }
+    let mut interrupted = BTreeSet::new();
     let deadline = tokio::time::Instant::now() + grace;
     let mut empty_checks = 0;
     while tokio::time::Instant::now() < deadline {
-        tokio::time::sleep(Duration::from_millis(25)).await;
-        remaining = refresh_and_alive();
+        for pid in &remaining {
+            if !interrupted.insert(*pid) {
+                continue;
+            }
+            match kill(NixPid::from_raw(*pid as i32), Signal::SIGINT) {
+                Ok(()) | Err(Errno::ESRCH) => {}
+                Err(error) => {
+                    return Err(error).context("failed to interrupt tracked descendant");
+                }
+            }
+        }
         if remaining.is_empty() {
             empty_checks += 1;
             if empty_checks >= 3 {
@@ -257,9 +261,8 @@ pub async fn settle_tracked_processes(
         } else {
             empty_checks = 0;
         }
-        for pid in &remaining {
-            let _ = kill(NixPid::from_raw(*pid as i32), Signal::SIGINT);
-        }
+        tokio::time::sleep(Duration::from_millis(25)).await;
+        remaining = refresh_and_alive();
     }
     let forced = !remaining.is_empty();
     for pid in &remaining {
