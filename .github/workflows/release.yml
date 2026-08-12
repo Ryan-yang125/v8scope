@@ -51,7 +51,7 @@ jobs:
     name: verify / Linux x64 / Node 22
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ inputs.tag }}
           persist-credentials: false
@@ -71,7 +71,7 @@ jobs:
     name: verify / Linux x64 / Node 24 and 26
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ inputs.tag }}
           persist-credentials: false
@@ -96,7 +96,7 @@ jobs:
     name: verify / macOS ARM64 / Node 22
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ inputs.tag }}
           persist-credentials: false
@@ -112,7 +112,7 @@ jobs:
   verify-minimum-rust:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ inputs.tag }}
           persist-credentials: false
@@ -128,7 +128,7 @@ jobs:
   verify-clinic-baseline:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ inputs.tag }}
           persist-credentials: false
@@ -142,7 +142,7 @@ jobs:
   verify-security-audit:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ inputs.tag }}
           persist-credentials: false
@@ -169,7 +169,7 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ inputs.tag }}
           persist-credentials: false
@@ -230,7 +230,7 @@ jobs:
       "contents": "read"
       "id-token": "write"
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ inputs.tag }}
           persist-credentials: false
@@ -288,7 +288,7 @@ jobs:
       BUILD_MANIFEST_NAME: target/distrib/global-dist-manifest.json
       DIST_TAG: ${{ needs.plan.outputs.tag }}
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ inputs.tag }}
           persist-credentials: false
@@ -362,7 +362,7 @@ jobs:
     outputs:
       val: ${{ steps.host.outputs.manifest }}
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ inputs.tag }}
           persist-credentials: false
@@ -455,7 +455,7 @@ jobs:
           path: formula/
           merge-multiple: true
       - name: Checkout Homebrew tap
-        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: Ryan-yang125/homebrew-tap
           ssh-key: ${{ secrets.HOMEBREW_TAP_SSH_KEY }}
@@ -485,7 +485,7 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: ${{ inputs.tag }}
           persist-credentials: false
