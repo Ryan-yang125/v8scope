@@ -109,6 +109,27 @@ pub fn verify_artifacts(root: &Path, expected: &[Artifact]) -> anyhow::Result<()
 }
 
 pub fn node_option(value: &Path) -> String {
-    let value = value.to_string_lossy();
-    format!("\"{}\"", value.replace('\\', "\\\\").replace('"', "\\\""))
+    quote_node_option(&value.to_string_lossy(), cfg!(windows))
+}
+
+fn quote_node_option(value: &str, windows: bool) -> String {
+    let value = if windows {
+        value.replace('\\', "/")
+    } else {
+        value.replace('\\', "\\\\")
+    };
+    format!("\"{}\"", value.replace('"', "\\\""))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::quote_node_option;
+
+    #[test]
+    fn node_options_use_forward_slashes_for_windows_paths() {
+        assert_eq!(
+            quote_node_option(r#"C:\work dir\v8scope-probe.cjs"#, true),
+            r#""C:/work dir/v8scope-probe.cjs""#
+        );
+    }
 }
