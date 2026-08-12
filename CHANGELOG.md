@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/Ryan-yang125/v8scope/compare/v0.1.0...v0.1.1) - 2026-08-12
+
+### Other
+
+- Automate releases with release-plz
+- Simplify CI and release platforms
+
 ## 0.1.0
 
 - Rust CLI for diagnose, CPU, heap, async, combined, attach, analyze, compare, open, clean, and schema workflows.
