@@ -7,22 +7,17 @@ cargo-dist-version = "0.32.0"
 # exact, locked Cargo installs in place of generated remote installer pipes.
 allow-dirty = ["ci"]
 ci = "github"
-installers = ["shell", "powershell", "npm", "homebrew"]
+installers = ["shell", "npm", "homebrew"]
 include = ["NOTICE.md", "licenses/"]
 targets = [
   "aarch64-apple-darwin",
   "x86_64-apple-darwin",
-  "aarch64-unknown-linux-gnu",
   "x86_64-unknown-linux-gnu",
-  "aarch64-pc-windows-msvc",
-  "x86_64-pc-windows-msvc",
 ]
 unix-archive = ".tar.xz"
-windows-archive = ".zip"
 npm-package = "v8scope"
 publish-jobs = ["npm", "homebrew"]
 tap = "Ryan-yang125/homebrew-tap"
-pr-run-mode = "plan"
 install-path = "CARGO_HOME"
 cargo-auditable = true
 cargo-cyclonedx = true
@@ -30,8 +25,6 @@ github-attestations = true
 
 [dist.github-custom-runners]
 aarch64-apple-darwin = "macos-15"
-aarch64-unknown-linux-gnu = "ubuntu-24.04-arm"
-aarch64-pc-windows-msvc = "windows-11-arm"
 
 [dist.github-action-commits]
 "actions/checkout" = "d23441a48e516b6c34aea4fa41551a30e30af803"

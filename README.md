@@ -7,7 +7,7 @@ It covers Clinic.js Doctor, Flame, Heap Profiler, and Bubbleprof's maintained us
 ## Requirements
 
 - Node.js 22, 24, or 26
-- macOS, Linux, or Windows on x64 or arm64
+- macOS on arm64 or x64, or Linux on x64
 
 ## Install
 
@@ -17,16 +17,14 @@ For development from this checkout:
 cargo install --path .
 ```
 
-Tagged releases produce shell and PowerShell installers, a Homebrew formula, an npm package, checksums, CycloneDX SBOMs, and GitHub build attestations. After the first release:
+Tagged releases produce a shell installer, a Homebrew formula, an npm package, checksums, CycloneDX SBOMs, and GitHub build attestations. Other targets can build from source with Cargo.
 
 ```sh
 npm install --global v8scope
-brew install Ryan-yang125/tap/v8scope
+brew tap Ryan-yang125/tap
+brew trust --formula Ryan-yang125/tap/v8scope
+brew install v8scope
 curl --proto '=https' --tlsv1.2 -LsSf https://github.com/Ryan-yang125/v8scope/releases/latest/download/v8scope-installer.sh | sh
-```
-
-```powershell
-powershell -ExecutionPolicy Bypass -c "irm https://github.com/Ryan-yang125/v8scope/releases/latest/download/v8scope-installer.ps1 | iex"
 ```
 
 ## Diagnose an application
