@@ -1,7 +1,7 @@
 # Releasing
 
 1. Create or connect the `Ryan-yang125/v8scope` GitHub repository.
-2. Create `Ryan-yang125/homebrew-tap`, add a fine-grained `HOMEBREW_TAP_TOKEN` limited to that repository, and protect the `main` branch.
+2. Create `Ryan-yang125/homebrew-tap`, add a write-enabled deploy key whose private key is stored as the `HOMEBREW_TAP_SSH_KEY` Actions secret in this repository, and protect the `main` branch.
 3. Configure the npm package's trusted publisher for `Ryan-yang125/v8scope`, workflow `release.yml`, and the `npm publish` action. The workflow uses OIDC and npm provenance without a long-lived npm token.
 4. Protect release tags and keep the version in `Cargo.toml` identical to a tag such as `v0.1.0`.
 5. The release workflow first runs the Node 22/24/26 matrix on six native platforms, MSRV validation, and pinned Clinic baseline verification for the exact tag SHA. It then builds archives, installers and checksums, generates CycloneDX SBOMs, embeds auditable dependency data, adds GitHub provenance attestations, publishes npm and Homebrew, and creates the GitHub release.
