@@ -1,0 +1,39 @@
+{
+  "repositories": [
+    {
+      "name": "node-clinic",
+      "url": "https://github.com/clinicjs/node-clinic.git",
+      "commit": "19262605b5647d34e660294e93c0cee62ea3a746",
+      "tests": 42,
+      "inventory_sha256": "84eeb527e7271c369a09f8808e778d010f7667290206ec79b8d7600682f45219"
+    },
+    {
+      "name": "node-clinic-doctor",
+      "url": "https://github.com/clinicjs/node-clinic-doctor.git",
+      "commit": "00749d83f04cb30ed24e91f29e89ad25e267ac33",
+      "tests": 25,
+      "inventory_sha256": "4350041ebd51109f056aec332932b08a23e515ca149f684bd3ebf121026f5c63"
+    },
+    {
+      "name": "node-clinic-flame",
+      "url": "https://github.com/clinicjs/node-clinic-flame.git",
+      "commit": "747b6919fdfec27f415bc70f99b762fe78928fad",
+      "tests": 16,
+      "inventory_sha256": "60be5d2cc0d91f96a4fdf8b6837d94605531abea548d1a45b843832294ad5feb"
+    },
+    {
+      "name": "node-clinic-bubbleprof",
+      "url": "https://github.com/clinicjs/node-clinic-bubbleprof.git",
+      "commit": "cf801d49299b8ecd25c5d9e88f662defc4bbad71",
+      "tests": 52,
+      "inventory_sha256": "ea3315336e727b0f0c2d8608374e5eeabce6e239dcf7bfe80f6b590e582e91dd"
+    },
+    {
+      "name": "node-clinic-heap-profiler",
+      "url": "https://github.com/clinicjs/node-clinic-heap-profiler.git",
+      "commit": "2135fbfeaaf22d8a567d0293ec0b53c7f4739f49",
+      "tests": 6,
+      "inventory_sha256": "d8d4b4102e96db58cd83bb9cffc27308fbba9f4b07c645f4fdc641fc24e4f2d3"
+    }
+  ]
+}

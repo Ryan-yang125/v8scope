@@ -1,0 +1,13 @@
+[budgets.event_loop_p99_ms]
+max = 100
+regression_percent = 10
+
+[budgets.rss_max_bytes]
+max = 536870912
+regression_percent = 15
+
+[budgets.gc_max_pause_ms]
+max = 100
+
+[budgets.gc_max_blocking_ms_per_second]
+max = 100
