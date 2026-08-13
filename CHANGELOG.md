@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.1](https://github.com/Ryan-yang125/v8scope/compare/v0.2.0...v0.2.1) - 2026-08-13
+
+### Other
+
+- surface Rust control-plane benchmark advantages
+
 ## [0.2.0](https://github.com/Ryan-yang125/v8scope/compare/v0.1.1...v0.2.0) - 2026-08-13
 
 ### Added
