@@ -553,6 +553,16 @@ function redactMachinePaths(value) {
 }
 
 function markdown(result) {
+  const pairs = [
+    ["Doctor / Diagnose", "clinic-doctor", "v8scope-diagnose"],
+    ["Flame / CPU", "clinic-flame", "v8scope-cpu"],
+    ["Heap Profiler / Heap", "clinic-heapprofiler", "v8scope-heap"],
+    ["Bubbleprof / Async", "clinic-bubbleprof", "v8scope-async"],
+  ];
+  const baselineRssKb = result.summary.baseline?.peakRssKb?.median;
+  const incrementalRss = (summary) => Number.isFinite(baselineRssKb)
+    ? Math.max(0, summary.peakRssKb.median - baselineRssKb) / 1024
+    : Number.NaN;
   const lines = [
     `# ${result.environment.label} benchmark`,
     "",
@@ -565,9 +575,28 @@ function markdown(result) {
     `- Clinic.js: ${result.environment.clinic}`,
     `- Commit: \`${result.environment.commit ?? "unknown"}\``,
     "",
+    "## Completion and control-plane cost",
+    "",
+    "| Workflow | Report success (V8Scope / Clinic) | Finalize median (V8Scope / Clinic) | Incremental peak RSS over baseline (V8Scope / Clinic) |",
+    "| --- | ---: | ---: | ---: |",
+  ];
+  for (const [label, clinicId, v8scopeId] of pairs) {
+    const clinic = result.summary[clinicId];
+    const v8scope = result.summary[v8scopeId];
+    if (!clinic || !v8scope) continue;
+    lines.push(
+      `| ${label} | ${v8scope.reportSuccesses}/${v8scope.runs} / ${clinic.reportSuccesses}/${clinic.runs} | ${fixed(v8scope.finalizeMs.median / 1_000, 2)} s / ${fixed(clinic.finalizeMs.median / 1_000, 2)} s | ${fixed(incrementalRss(v8scope))} MiB / ${fixed(incrementalRss(clinic))} MiB |`,
+    );
+  }
+  lines.push(
+    "",
+    "Incremental RSS subtracts the median baseline Node process tree. Finalize covers profiler shutdown, analysis, and report generation after the load finishes. Failed Clinic reports retain their timeout-inclusive finalization time.",
+    "",
+    "## Collection overhead",
+    "",
     "| Variant | Report success | Requests/s median | vs baseline | p99 median | Peak tree RSS | Finalize |",
     "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
-  ];
+  );
   for (const id of result.parameters.variantOrder) {
     const summary = result.summary[id];
     lines.push(

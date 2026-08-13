@@ -44,9 +44,27 @@ The design and test suite directly cover failure classes reported by Clinic user
 
 ## Performance evidence
 
-The checked-in [VPS benchmark](../benchmarks/README.md) runs Clinic.js and V8Scope against the same application, Node executable, and external Autocannon load. It records one warmup, 10 measured runs, deterministic order rotation, throughput, p99 latency, process-tree RSS, report finalization, artifact size, exits, and residual process groups. Product claims use medians from the raw published samples.
+The checked-in [VPS benchmark](../benchmarks/README.md) separates Rust control-plane work from target-application collection overhead. Product claims use medians from the raw published samples.
 
-On Ubuntu 24.04 x64 with Node 22.22.0, V8Scope completed 10/10 reports in each of Diagnose, CPU, Heap, and Async. Clinic Doctor completed 10/10, Flame 0/10, Heap Profiler 0/10, and Bubbleprof 6/10 under the same documented 30-second report window. Low-overhead throughput distributions overlap. V8Scope Async recorded higher median throughput and report reliability while using higher median peak process-tree RSS. See the [canonical summary](../benchmarks/results/2026-08-13-ubuntu-x64-node22/summary.md) and [all 90 raw samples](../benchmarks/results/2026-08-13-ubuntu-x64-node22/raw.json).
+### Rust control plane
+
+On Ubuntu 24.04 x64 with Node 22.22.0, 30 startup samples and 10 offline report rebuilds produced these medians:
+
+| Metric | Clinic.js 13.0.0 | V8Scope npm command | V8Scope native binary |
+| --- | ---: | ---: | ---: |
+| CLI startup | 219.1 ms | 46.7 ms | 6.4 ms |
+| Offline report rebuild | 2274.4 ms | 278.1 ms | 244.9 ms |
+| Report rebuild peak RSS | 182.7 MiB | 54.7 MiB | 7.6 MiB |
+
+V8Scope's five-second input was 288.4 KB and Clinic's was 112.3 KB. The public npm command includes the Node platform-selection wrapper; the native column isolates the released Rust process. See all [control-plane samples and quartiles](../benchmarks/results/2026-08-13-ubuntu-x64-node22/control-plane.json).
+
+Separate production npm prefixes measured 96.1 MB, 17,909 files, 693 dependency nodes, and 24 audit findings for Clinic. V8Scope measured 17.6 MB, 85 files, 3 dependency nodes, and zero audit findings. Audit counts describe the registry state on the benchmark date and can change independently of runtime performance.
+
+### Collection reliability and overhead
+
+V8Scope completed 10/10 reports in each of Diagnose, CPU, Heap, and Async. Clinic Doctor completed 10/10, Flame 0/10, Heap Profiler 0/10, and Bubbleprof 6/10 under the same 30-second report window. V8Scope finalized Diagnose 4.8× faster and Async 2.0× faster. CPU and Heap completed in 0.43 and 0.21 seconds while their Clinic counterparts timed out around 30 seconds.
+
+After subtracting the 76.4 MiB baseline Node process tree, V8Scope used 69.5 MiB versus Clinic's 142.7 MiB for Diagnose, 70.0 versus 151.7 MiB for CPU, and 64.9 versus 82.7 MiB for Heap. Async used 517.9 versus 431.2 MiB, the current measured memory tradeoff. Low-overhead throughput distributions overlap; Async completed 36.6% more requests. See the [collection summary](../benchmarks/results/2026-08-13-ubuntu-x64-node22/summary.md) and [all 90 samples](../benchmarks/results/2026-08-13-ubuntu-x64-node22/raw.json).
 
 The benchmark covers one controlled workload and one host class. Re-run it against your service before using the numbers for capacity planning.
 

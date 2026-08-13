@@ -32,3 +32,5 @@ jobs:
       - run: cargo build --release --locked
       - run: npm run benchmark:smoke
         working-directory: benchmarks
+      - run: npm run benchmark:control-smoke
+        working-directory: benchmarks

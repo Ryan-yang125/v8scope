@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "benchmark": "node scripts/run.mjs",
-    "benchmark:smoke": "node scripts/run.mjs --variants baseline,v8scope-diagnose --iterations 1 --warmup 0 --duration 2 --results results/local-smoke"
+    "benchmark:smoke": "node scripts/run.mjs --variants baseline,v8scope-diagnose --iterations 1 --warmup 0 --duration 2 --results results/local-smoke",
+    "benchmark:control": "node scripts/control-plane.mjs",
+    "benchmark:control-smoke": "node scripts/control-plane.mjs --startup-iterations 1 --report-iterations 1 --warmup 0 --capture-duration 3 --skip-footprint --results results/local-control-smoke"
   },
   "devDependencies": {
     "autocannon": "8.0.0",

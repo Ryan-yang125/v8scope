@@ -1,0 +1,1745 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-13T11:13:58.731Z",
+  "environment": {
+    "label": "ubuntu-24.04-x64-node22",
+    "os": "linux",
+    "osRelease": "6.8.0-134-generic",
+    "arch": "x64",
+    "cpuModel": "AMD EPYC 9354P 32-Core Processor",
+    "cpuCount": 4,
+    "totalMemoryBytes": 16769036288,
+    "node": "v22.22.0",
+    "v8": "12.4.254.21-node.33",
+    "v8scope": "v8scope 0.2.0",
+    "clinic": "v13.0.0",
+    "commit": "33854a7e14b683e50e3f58697b07bae66a310fda"
+  },
+  "parameters": {
+    "startupIterations": 30,
+    "reportIterations": 10,
+    "warmup": 1,
+    "captureDurationSeconds": 5,
+    "scheduling": "rotated each round and reversed on odd rounds"
+  },
+  "inputs": {
+    "clinic": {
+      "bytes": 112253,
+      "files": 3
+    },
+    "v8scope": {
+      "bytes": 288384,
+      "files": 6
+    }
+  },
+  "footprint": {
+    "clinic": {
+      "bytes": 96146948,
+      "files": 17909,
+      "packages": 693,
+      "productionVulnerabilities": 24
+    },
+    "v8scope": {
+      "bytes": 17599658,
+      "files": 85,
+      "packages": 3,
+      "productionVulnerabilities": 0
+    }
+  },
+  "summary": {
+    "startup": {
+      "clinic-cli": {
+        "runs": 30,
+        "elapsedMs": {
+          "median": 219.14670950000072,
+          "q1": 216.0499692500025,
+          "q3": 228.47835175,
+          "min": 206.28481699999975,
+          "max": 245.76601200000005,
+          "samples": 30
+        },
+        "peakRssKb": {
+          "median": 75534,
+          "q1": 75426,
+          "q3": 75686,
+          "min": 75244,
+          "max": 75936,
+          "samples": 30
+        }
+      },
+      "v8scope-native": {
+        "runs": 30,
+        "elapsedMs": {
+          "median": 6.4015515000010055,
+          "q1": 5.717852249998941,
+          "q3": 6.93411924999964,
+          "min": 4.9897409999975935,
+          "max": 7.407279999999446,
+          "samples": 30
+        },
+        "peakRssKb": {
+          "median": 5312,
+          "q1": 5248,
+          "q3": 5376,
+          "min": 5120,
+          "max": 5504,
+          "samples": 30
+        }
+      },
+      "v8scope-npm": {
+        "runs": 30,
+        "elapsedMs": {
+          "median": 46.73346399999991,
+          "q1": 44.171508749997884,
+          "q3": 49.88326900000038,
+          "min": 41.721160000000964,
+          "max": 56.640605000000505,
+          "samples": 30
+        },
+        "peakRssKb": {
+          "median": 56038,
+          "q1": 55913,
+          "q3": 56040,
+          "min": 55784,
+          "max": 56172,
+          "samples": 30
+        }
+      }
+    },
+    "reportRebuild": {
+      "clinic-doctor": {
+        "runs": 10,
+        "elapsedMs": {
+          "median": 2274.418398500002,
+          "q1": 2261.7428807499964,
+          "q3": 2308.256984749999,
+          "min": 2132.877048999995,
+          "max": 2391.797209000004,
+          "samples": 10
+        },
+        "peakRssKb": {
+          "median": 187112,
+          "q1": 185099,
+          "q3": 189602,
+          "min": 179972,
+          "max": 190892,
+          "samples": 10
+        }
+      },
+      "v8scope-native": {
+        "runs": 10,
+        "elapsedMs": {
+          "median": 244.92186449999645,
+          "q1": 237.19723074999638,
+          "q3": 248.62199874999897,
+          "min": 233.57030099999974,
+          "max": 263.999920000002,
+          "samples": 10
+        },
+        "peakRssKb": {
+          "median": 7744,
+          "q1": 7680,
+          "q3": 7904,
+          "min": 7552,
+          "max": 7936,
+          "samples": 10
+        }
+      },
+      "v8scope-npm": {
+        "runs": 10,
+        "elapsedMs": {
+          "median": 278.12708150000253,
+          "q1": 276.03714975,
+          "q3": 281.1360030000005,
+          "min": 266.8667789999963,
+          "max": 285.7050150000068,
+          "samples": 10
+        },
+        "peakRssKb": {
+          "median": 56052,
+          "q1": 56049,
+          "q3": 56052,
+          "min": 55924,
+          "max": 56180,
+          "samples": 10
+        }
+      }
+    }
+  },
+  "samples": {
+    "startup": [
+      {
+        "variant": "clinic-cli",
+        "round": 0,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 232.15098300000136,
+        "peakRssKb": 75776,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 0,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 6.606057000000874,
+        "peakRssKb": 5248,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 0,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 43.502837,
+        "peakRssKb": 55912,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 1,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 5.175291999999899,
+        "peakRssKb": 5376,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 1,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 218.76803500000096,
+        "peakRssKb": 75656,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 1,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 56.640605000000505,
+        "peakRssKb": 56172,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 2,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 6.493472000000111,
+        "peakRssKb": 5248,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 2,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 54.12567500000114,
+        "peakRssKb": 56040,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 2,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 217.38796000000002,
+        "peakRssKb": 75864,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 3,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 49.783604000000196,
+        "peakRssKb": 56040,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 3,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 7.127275000000736,
+        "peakRssKb": 5248,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 3,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 221.96059700000114,
+        "peakRssKb": 75484,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 4,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 43.29500000000007,
+        "peakRssKb": 55916,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 4,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 206.28481699999975,
+        "peakRssKb": 75512,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 4,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 5.614535000000615,
+        "peakRssKb": 5248,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 5,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 210.9418459999997,
+        "peakRssKb": 75936,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 5,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 46.60094299999946,
+        "peakRssKb": 55912,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 5,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 6.952944000000571,
+        "peakRssKb": 5248,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 6,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 228.65033100000073,
+        "peakRssKb": 75460,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 6,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 6.4031900000009045,
+        "peakRssKb": 5248,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 6,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 46.865985000000364,
+        "peakRssKb": 55912,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 7,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 5.306286999999429,
+        "peakRssKb": 5248,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 7,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 238.59059700000034,
+        "peakRssKb": 75248,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 7,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 51.31362300000001,
+        "peakRssKb": 56040,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 8,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 5.011908000000403,
+        "peakRssKb": 5248,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 8,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 49.90056700000059,
+        "peakRssKb": 56168,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 8,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 216.28347500000018,
+        "peakRssKb": 75556,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 9,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 45.70141100000001,
+        "peakRssKb": 55916,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 9,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 6.774806999999782,
+        "peakRssKb": 5248,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 9,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 216.38336999999956,
+        "peakRssKb": 75352,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 10,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 43.9388940000008,
+        "peakRssKb": 55912,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 10,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 224.61961299999894,
+        "peakRssKb": 75348,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 10,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 7.19712299999992,
+        "peakRssKb": 5248,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 11,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 214.9381659999999,
+        "peakRssKb": 75564,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 11,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 49.83137499999975,
+        "peakRssKb": 56168,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 11,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 5.972869999999602,
+        "peakRssKb": 5376,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 12,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 218.50983499999893,
+        "peakRssKb": 75276,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 12,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 7.407279999999446,
+        "peakRssKb": 5376,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 12,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 45.271199999999226,
+        "peakRssKb": 56168,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 13,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 7.012095999998564,
+        "peakRssKb": 5376,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 13,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 218.4785490000013,
+        "peakRssKb": 75484,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 13,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 41.721160000000964,
+        "peakRssKb": 56036,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 14,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 6.0146050000003015,
+        "peakRssKb": 5376,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 14,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 46.929621999999654,
+        "peakRssKb": 55916,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 14,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 235.95833299999867,
+        "peakRssKb": 75688,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 15,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 44.06136499999775,
+        "peakRssKb": 56040,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 15,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 6.742536000001564,
+        "peakRssKb": 5120,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 15,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 233.98714199999813,
+        "peakRssKb": 75456,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 16,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 46.514946999999665,
+        "peakRssKb": 56036,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 16,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 227.9624139999978,
+        "peakRssKb": 75616,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 16,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 7.170028999997157,
+        "peakRssKb": 5248,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 17,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 220.26394000000073,
+        "peakRssKb": 75376,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 17,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 50.05947000000015,
+        "peakRssKb": 55912,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 17,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 6.877644999996846,
+        "peakRssKb": 5504,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 18,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 213.2586569999985,
+        "peakRssKb": 75244,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 18,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 6.346700000001874,
+        "peakRssKb": 5376,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 18,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 54.80744500000219,
+        "peakRssKb": 56040,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 19,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 6.399913000001106,
+        "peakRssKb": 5248,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 19,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 234.5096620000004,
+        "peakRssKb": 75756,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 19,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 45.192064999999275,
+        "peakRssKb": 55916,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 20,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 5.768390999997791,
+        "peakRssKb": 5248,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 20,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 43.89077199999883,
+        "peakRssKb": 56044,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 20,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 207.20259100000112,
+        "peakRssKb": 75476,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 21,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 45.542317999999796,
+        "peakRssKb": 55912,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 21,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 5.319154000000708,
+        "peakRssKb": 5376,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 21,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 214.76005000000077,
+        "peakRssKb": 75780,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 22,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 52.989551999999094,
+        "peakRssKb": 56172,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 22,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 215.97213400000328,
+        "peakRssKb": 75572,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 22,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 6.771948999998131,
+        "peakRssKb": 5376,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 23,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 219.52538400000049,
+        "peakRssKb": 75416,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 23,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 48.44415200000003,
+        "peakRssKb": 55912,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 23,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 7.21131200000309,
+        "peakRssKb": 5376,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 24,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 226.74699099999998,
+        "peakRssKb": 75372,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 24,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 5.579306999999972,
+        "peakRssKb": 5504,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 24,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 46.892596999998204,
+        "peakRssKb": 56036,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 25,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 4.9897409999975935,
+        "peakRssKb": 5376,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 25,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 217.1455670000032,
+        "peakRssKb": 75716,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 25,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 43.4315319999987,
+        "peakRssKb": 56040,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 26,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 5.701005999999325,
+        "peakRssKb": 5376,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 26,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 42.982975999999326,
+        "peakRssKb": 56172,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 26,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 227.8223309999994,
+        "peakRssKb": 75484,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 27,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 50.77111199999854,
+        "peakRssKb": 56040,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 27,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 6.322690000000875,
+        "peakRssKb": 5376,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 27,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 245.76601200000005,
+        "peakRssKb": 75680,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 28,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 44.501939999998285,
+        "peakRssKb": 55784,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 28,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 214.61374599999908,
+        "peakRssKb": 75688,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 28,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 7.028698000001896,
+        "peakRssKb": 5376,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-cli",
+        "round": 29,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 230.42560500000036,
+        "peakRssKb": 75660,
+        "lingeringProcessGroup": false,
+        "stdout": "v13.0.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 29,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 48.061437000000296,
+        "peakRssKb": 56040,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 29,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 6.326776999998401,
+        "peakRssKb": 5248,
+        "lingeringProcessGroup": false,
+        "stdout": "v8scope 0.2.0",
+        "stderr": ""
+      }
+    ],
+    "reportRebuild": [
+      {
+        "variant": "clinic-doctor",
+        "round": 0,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 2272.0225170000012,
+        "peakRssKb": 184096,
+        "lingeringProcessGroup": false,
+        "stdout": "Generated HTML file is file://<control-host>/report-1-clinic-doctor/run.clinic-doctor.html",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 0,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 259.88187800000014,
+        "peakRssKb": 7936,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 0,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 281.8464500000009,
+        "peakRssKb": 56052,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 1,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 247.85049699999945,
+        "peakRssKb": 7808,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-doctor",
+        "round": 1,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 2281.4129030000004,
+        "peakRssKb": 190404,
+        "lingeringProcessGroup": false,
+        "stdout": "Generated HTML file is file://<control-host>/report-2-clinic-doctor/run.clinic-doctor.html",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 1,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 275.72307100000035,
+        "peakRssKb": 56052,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 2,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 245.37076199999865,
+        "peakRssKb": 7936,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 2,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 281.7188920000008,
+        "peakRssKb": 56052,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-doctor",
+        "round": 2,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 2276.8142800000023,
+        "peakRssKb": 186812,
+        "lingeringProcessGroup": false,
+        "stdout": "Generated HTML file is file://<control-host>/report-3-clinic-doctor/run.clinic-doctor.html",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 3,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 279.3873359999998,
+        "peakRssKb": 55924,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 3,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 248.8791659999988,
+        "peakRssKb": 7680,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-doctor",
+        "round": 3,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 2186.646182999997,
+        "peakRssKb": 184528,
+        "lingeringProcessGroup": false,
+        "stdout": "Generated HTML file is file://<control-host>/report-4-clinic-doctor/run.clinic-doctor.html",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 4,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 278.8021050000025,
+        "peakRssKb": 56180,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-doctor",
+        "round": 4,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 2326.187238999999,
+        "peakRssKb": 190892,
+        "lingeringProcessGroup": false,
+        "stdout": "Generated HTML file is file://<control-host>/report-5-clinic-doctor/run.clinic-doctor.html",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 4,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 235.13586000000214,
+        "peakRssKb": 7680,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-doctor",
+        "round": 5,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 2264.103553000001,
+        "peakRssKb": 186984,
+        "lingeringProcessGroup": false,
+        "stdout": "Generated HTML file is file://<control-host>/report-6-clinic-doctor/run.clinic-doctor.html",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 5,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 270.8487959999984,
+        "peakRssKb": 56052,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 5,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 244.47296699999424,
+        "peakRssKb": 7936,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-doctor",
+        "round": 6,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 2391.797209000004,
+        "peakRssKb": 179972,
+        "lingeringProcessGroup": false,
+        "stdout": "Generated HTML file is file://<control-host>/report-7-clinic-doctor/run.clinic-doctor.html",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 6,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 235.84724199999619,
+        "peakRssKb": 7552,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 6,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 276.97938599999907,
+        "peakRssKb": 56172,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 7,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 263.999920000002,
+        "peakRssKb": 7680,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-doctor",
+        "round": 7,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 2260.955989999995,
+        "peakRssKb": 187240,
+        "lingeringProcessGroup": false,
+        "stdout": "Generated HTML file is file://<control-host>/report-8-clinic-doctor/run.clinic-doctor.html",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 7,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 277.4520580000026,
+        "peakRssKb": 56048,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 8,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 233.57030099999974,
+        "peakRssKb": 7808,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 8,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 266.8667789999963,
+        "peakRssKb": 55924,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-doctor",
+        "round": 8,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 2317.2050119999985,
+        "peakRssKb": 190236,
+        "lingeringProcessGroup": false,
+        "stdout": "Generated HTML file is file://<control-host>/report-9-clinic-doctor/run.clinic-doctor.html",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-npm",
+        "round": 9,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 285.7050150000068,
+        "peakRssKb": 56052,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "v8scope-native",
+        "round": 9,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 241.24719699999696,
+        "peakRssKb": 7552,
+        "lingeringProcessGroup": false,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "variant": "clinic-doctor",
+        "round": 9,
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "elapsedMs": 2132.877048999995,
+        "peakRssKb": 187700,
+        "lingeringProcessGroup": false,
+        "stdout": "Generated HTML file is file://<control-host>/report-10-clinic-doctor/run.clinic-doctor.html",
+        "stderr": ""
+      }
+    ]
+  },
+  "captureLogs": {
+    "v8scope": {
+      "stdout": "ready:38185\nV8Scope run: <control-host>/v8scope-seed/run-b5c79914\n",
+      "stderr": ""
+    },
+    "clinic": {
+      "stdout": "To generate the report press: Ctrl + C\nready:37489\nReceived Ctrl+C, closing process...\n- Analysing data\nAnalysing data\nGenerated HTML file is file://<control-host>/clinic-seed/run.clinic-doctor.html\n",
+      "stderr": ""
+    }
+  }
+}
