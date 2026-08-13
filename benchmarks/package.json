@@ -1,0 +1,16 @@
+{
+  "name": "v8scope-benchmarks",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "benchmark": "node scripts/run.mjs",
+    "benchmark:smoke": "node scripts/run.mjs --variants baseline,v8scope-diagnose --iterations 1 --warmup 0 --duration 2 --results results/local-smoke"
+  },
+  "devDependencies": {
+    "autocannon": "8.0.0",
+    "clinic": "13.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

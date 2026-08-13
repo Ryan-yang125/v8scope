@@ -1,5 +1,7 @@
 # Notices
 
+V8Scope is an independent project and is not affiliated with or endorsed by NearForm or the Clinic.js maintainers. Clinic.js names are used to describe workflow compatibility and the public migration path.
+
 V8Scope was designed after studying the following open-source projects:
 
 - Clinic.js (`node-clinic`, `node-clinic-doctor`, `node-clinic-flame`, `node-clinic-bubbleprof`, and `node-clinic-heap-profiler`), copyright NearForm and Clinic.js contributors, MIT License. Its executable tests form the traceability baseline, and its Doctor CPU analysis informed the deterministic Rust HMM implementation. The complete upstream permission notice is distributed in `licenses/CLINIC-MIT.txt`.

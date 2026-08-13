@@ -7,7 +7,7 @@ use clap::{Args, Parser, Subcommand};
 #[command(
     name = "v8scope",
     version,
-    about = "Rust-first diagnostics for Node.js and V8"
+    about = "A maintained Rust-first replacement for Clinic.js"
 )]
 pub struct Cli {
     #[command(subcommand)]

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Migration guide
+    url: https://github.com/Ryan-yang125/v8scope/blob/main/docs/migrating-from-clinic.md
+    about: Map Clinic.js commands and automation to V8Scope.
+  - name: Security policy
+    url: https://github.com/Ryan-yang125/v8scope/security/policy
+    about: Report security vulnerabilities privately.
