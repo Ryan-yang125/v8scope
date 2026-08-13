@@ -128,22 +128,32 @@ Exit code `0` means the budgets pass, `10` means a budget failed, and `70` means
 
 ## Real benchmark
 
-The checked-in [Ubuntu x64 benchmark](benchmarks/README.md) runs Clinic.js 13.0.0 and V8Scope against the same Node 22 application and the same external Autocannon load. It uses one warmup, 10 measured runs, deterministic order rotation, and publishes every raw sample.
+The checked-in [Ubuntu x64 benchmark](benchmarks/README.md) separates Rust control-plane performance from the target Node application's throughput. It publishes every raw sample, exact versions, quartiles, report outcomes, process-tree memory, and npm production surface.
 
 <!-- BENCHMARK_RESULTS_START -->
-On the dedicated Ubuntu 24.04 x64 VPS with Node 22.22.0, 20 connections, one warmup, and 10 measured runs:
+On the dedicated Ubuntu 24.04 x64 VPS with Node 22.22.0:
 
-| Workflow | Report success | Clinic.js median req/s | V8Scope median req/s | V8Scope finalize median |
-| --- | ---: | ---: | ---: | ---: |
-| Doctor / Diagnose | 10/10 vs 10/10 | 4661 | 4741 | 0.43 s |
-| Flame / CPU | 0/10 vs 10/10 | 4010 | 4686 | 0.43 s |
-| Heap Profiler / Heap | 0/10 vs 10/10 | 4493 | 4545 | 0.21 s |
-| Bubbleprof / Async | 6/10 vs 10/10 | 822 | 1123 | 3.95 s |
+| Rust control plane | Clinic.js 13.0.0 | V8Scope npm command | Released Rust binary |
+| --- | ---: | ---: | ---: |
+| CLI startup median | 219.1 ms | 46.7 ms (**4.7× faster**) | 6.4 ms (**34.2× faster**) |
+| Offline report rebuild median | 2274.4 ms | 278.1 ms (**8.2× faster**) | 244.9 ms (**9.3× faster**) |
+| Report rebuild peak RSS | 182.7 MiB | 54.7 MiB (**3.3× lower**) | 7.6 MiB (**24.2× lower**) |
+| Installed production tree | 96.1 MB / 17,909 files | 17.6 MB / 85 files | same installed tree |
+| npm dependency nodes / audit findings | 693 / 24 | 3 / 0 | no Node/npm runtime |
 
-Clinic Flame and Heap Profiler finished the 5-second load but did not finish reports inside the documented 30-second finalization window. V8Scope completed every measured report with no surviving process groups. The [raw JSON and quartiles](benchmarks/results/2026-08-13-ubuntu-x64-node22/) contain every exit, timeout, artifact size, and sample.
+Startup uses 30 measurements; report rebuilding uses 10 fresh copies of each tool's equivalent five-second diagnosis capture. V8Scope processed a larger report input in this run: 288.4 KB versus Clinic's 112.3 KB. Input copying is excluded from timing. The public npm launcher includes its Node platform-selection wrapper; the native row isolates the released Rust executable.
+
+| Collection workflow | Report success (V8Scope / Clinic) | Finalize median (V8Scope / Clinic) | Incremental RSS over baseline (V8Scope / Clinic) |
+| --- | ---: | ---: | ---: |
+| Doctor / Diagnose | **10/10 / 10/10** | **0.43 s / 2.08 s** | **69.5 / 142.7 MiB** |
+| Flame / CPU | **10/10 / 0/10** | **0.43 s / 32.01 s** | **70.0 / 151.7 MiB** |
+| Heap Profiler / Heap | **10/10 / 0/10** | **0.21 s / 30.01 s** | **64.9 / 82.7 MiB** |
+| Bubbleprof / Async | **10/10 / 6/10** | **3.95 s / 7.78 s** | 517.9 / **431.2 MiB** |
+
+Clinic Flame and Heap Profiler completed the five-second load but timed out while building all 10 reports. V8Scope completed 40/40 reports with no surviving process groups. Async remains the measured tradeoff: V8Scope completed reports and handled 36.6% more requests while using 20% more incremental memory.
 <!-- BENCHMARK_RESULTS_END -->
 
-The low-overhead mode throughput distributions overlap, so the few-percent differences represent parity on this fixture. V8Scope Async completed more requests and reports while using 594 MiB median peak process-tree RSS versus Clinic Bubbleprof's 508 MiB. Throughput and p99 characterize collection overhead; report success also requires clean shutdown, complete artifacts, and no surviving process group. The benchmark is reproducible and deliberately scoped to one controlled workload; run it against your application before capacity planning.
+The control-plane run uses v0.2.0. The collection run records v0.1.1; v0.2.0 changed package positioning and CLI description while leaving every collector unchanged. The [control-plane samples](benchmarks/results/2026-08-13-ubuntu-x64-node22/control-plane.json), [collection samples](benchmarks/results/2026-08-13-ubuntu-x64-node22/raw.json), and [methodology](benchmarks/README.md) are public. Diagnose, CPU, and Heap throughput distributions overlap the baseline, confirming low collection overhead. JavaScript execution speed remains governed by Node/V8. Run the harness against your application before capacity planning.
 
 ## Artifacts
 

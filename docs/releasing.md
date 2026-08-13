@@ -34,4 +34,4 @@ The checked-in release workflow carries audited cargo-dist 0.32 deltas: the Cycl
 
 ## Benchmark releases
 
-Run the canonical benchmark on the dedicated Ubuntu x64 VPS when collection overhead, shutdown, report generation, process containment, or artifact size changes. Commit the dated `raw.json` and `summary.md`, update the README result block from those samples, and record the exact already-published V8Scope version and commit. Hosted CI only runs a short harness smoke test.
+Run the canonical benchmark on the dedicated Ubuntu x64 VPS when collection overhead, shutdown, report generation, process containment, CLI startup, or distribution size changes. Commit the dated collection or control-plane raw data and summary, update the README result block from those samples, and record the exact already-published V8Scope version and commit. Hosted CI only runs the two short harness smoke paths.

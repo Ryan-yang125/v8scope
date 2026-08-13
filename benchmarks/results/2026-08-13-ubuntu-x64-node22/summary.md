@@ -9,6 +9,19 @@ Measured 10 times after 1 warmup run(s) per variant. Each measurement used 20 co
 - Clinic.js: v13.0.0
 - Commit: `0d90dc6ba4ac47679a640bb73eeac3c0989b8873`
 
+## Completion and control-plane cost
+
+| Workflow | Report success (V8Scope / Clinic) | Finalize median (V8Scope / Clinic) | Incremental peak RSS over baseline (V8Scope / Clinic) |
+| --- | ---: | ---: | ---: |
+| Doctor / Diagnose | 10/10 / 10/10 | 0.43 s / 2.08 s | 69.5 MiB / 142.7 MiB |
+| Flame / CPU | 10/10 / 0/10 | 0.43 s / 32.01 s | 70.0 MiB / 151.7 MiB |
+| Heap Profiler / Heap | 10/10 / 0/10 | 0.21 s / 30.01 s | 64.9 MiB / 82.7 MiB |
+| Bubbleprof / Async | 10/10 / 6/10 | 3.95 s / 7.78 s | 517.9 MiB / 431.2 MiB |
+
+Incremental RSS subtracts the 76.4 MiB median baseline Node process tree. Finalize covers profiler shutdown, analysis, and report generation after the load finishes. Failed Clinic reports retain their timeout-inclusive finalization time.
+
+## Collection overhead
+
 | Variant | Report success | Requests/s median | vs baseline | p99 median | Peak tree RSS | Finalize |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | baseline | 10/10 | 4607 | — | 8.0 ms | 76.4 MiB | 0.01 s |
