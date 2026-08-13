@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.0](https://github.com/Ryan-yang125/v8scope/compare/v0.1.1...v0.2.0) - 2026-08-13
+
+### Added
+
+- make V8Scope the maintained Clinic.js replacement
+
 ## [0.1.1](https://github.com/Ryan-yang125/v8scope/compare/v0.1.0...v0.1.1) - 2026-08-12
 
 ### Other
