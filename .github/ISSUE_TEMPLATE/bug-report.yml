@@ -1,0 +1,56 @@
+name: Bug report
+description: Report a reproducible V8Scope failure
+title: "bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Raw profiles can contain source paths, URLs, function names, and runtime values. Inspect artifacts before uploading them.
+  - type: input
+    id: version
+    attributes:
+      label: V8Scope version
+      placeholder: v8scope 0.2.0
+    validations:
+      required: true
+  - type: input
+    id: node
+    attributes:
+      label: Node and V8 versions
+      placeholder: Node 22.22.0, V8 12.x
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Operating system and architecture
+      placeholder: Ubuntu 24.04 x86_64
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include a small target application or repository and exact steps.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Actual result
+      description: Include exit code, stderr, manifest completeness, and artifact names.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true

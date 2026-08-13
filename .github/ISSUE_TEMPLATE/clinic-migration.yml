@@ -1,0 +1,50 @@
+name: Clinic.js migration
+description: Report a Clinic.js workflow that V8Scope should replace
+title: "clinic migration: "
+labels: ["clinic-migration"]
+body:
+  - type: dropdown
+    id: tool
+    attributes:
+      label: Clinic.js tool
+      options:
+        - Doctor
+        - Flame
+        - Heap Profiler
+        - Bubbleprof
+        - Programmable API
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: clinic-command
+    attributes:
+      label: Clinic.js command or API
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: v8scope-command
+    attributes:
+      label: V8Scope command tried
+      render: shell
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: V8Scope version, Node version, OS, architecture
+    validations:
+      required: true
+  - type: textarea
+    id: gap
+    attributes:
+      label: Migration gap
+      description: Describe the observable Clinic.js workflow that remains unavailable or behaves differently.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal application and steps
+    validations:
+      required: true
