@@ -29,7 +29,7 @@ jobs:
           toolchain: stable
       - name: Create tag and draft release
         id: release
-        uses: release-plz/action@2eb1d8bcb770b4c48ccfaad919734b38b51958c9
+        uses: release-plz/action@aec534bbd8631793b9b3b8f1ee6cd886c322e17f
         with:
           command: release
         env:
@@ -58,7 +58,7 @@ jobs:
         with:
           toolchain: stable
       - name: Create or update release PR
-        uses: release-plz/action@2eb1d8bcb770b4c48ccfaad919734b38b51958c9
+        uses: release-plz/action@aec534bbd8631793b9b3b8f1ee6cd886c322e17f
         with:
           command: release-pr
         env:
